@@ -2,6 +2,7 @@ package com.qxb.kotlin
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.qxb.kotlin.fragment.ImageFragment
 import org.buffer.adaptablebottomnavigation.adapter.FragmentStateAdapter
 
 /**

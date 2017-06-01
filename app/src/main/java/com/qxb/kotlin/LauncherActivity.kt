@@ -15,6 +15,9 @@ class LauncherActivity : Activity() {
         finish();
     }
 
+    /***
+     * 跳转到主Activity
+     */
     fun actionMain() {
         val intent: Intent = Intent(this, MainActivity::class.java);
         startActivity(intent);
