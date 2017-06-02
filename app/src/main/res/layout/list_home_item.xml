@@ -1,16 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:layout_margin="16dp"
-             android:gravity="center">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:background="#99FF2200"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@android:drawable/ic_secure"/>
 
     <TextView
-        android:id="@+id/recycler_view"
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:text="KKKKKKKKKK"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/iv_arrow"
+        android:gravity="center_vertical"
+        android:textColor="#FF333333"
+        android:textSize="14sp"
+        tools:text="KKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"/>
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:rotation="270"
+        android:src="@android:drawable/ic_secure"/>
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_below="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#FF488721"
+        android:textSize="14sp"
+        tools:text="zhang san"/>
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/tv_author"
+        android:layout_toLeftOf="@+id/iv_arrow"
+        android:gravity="center_vertical"
+        android:textColor="#FF333333"
+        android:textSize="14sp"
+        tools:text="1989-03-18"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@id/tv_author"
+        android:background="#88333333"
+        android:layout_marginTop="10dp"
+        android:layout_height="1dp"/>
+</RelativeLayout>

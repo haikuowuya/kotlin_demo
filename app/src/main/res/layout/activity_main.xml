@@ -7,7 +7,6 @@
 
     <org.buffer.adaptablebottomnavigation.view.ViewSwapper
         android:id="@+id/view_swapper"
-        android:background="#64FF0000"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/view_bottom_navigation" />

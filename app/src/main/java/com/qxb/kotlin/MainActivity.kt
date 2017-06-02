@@ -26,12 +26,11 @@ class MainActivity : AppCompatActivity() {
         mSwapperView!!.adapter = mViewSwapperAdapter;
         mBottomNavigationView!!.setupWithViewSwapper(mSwapperView);
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
-        doNetRequest();
+//        doNetRequest();
     }
 
     fun doNetRequest() {
-
-        RetrofitUtils.getApiService()?.getHswz()!!
+        RetrofitUtils.getApiService()?.getHswz(1)!!
                 .subscribeOn(Schedulers.io())!!
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { println("doOnSubscribe") }
