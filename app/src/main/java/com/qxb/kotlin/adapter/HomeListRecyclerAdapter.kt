@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.qxb.kotlin.DetailActivity
 import com.qxb.kotlin.R
 import com.qxb.kotlin.data.CommonItem
 import java.util.*
@@ -20,9 +21,12 @@ class HomeListRecyclerAdapter(val context: Context, val commonItems: LinkedList<
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder?, position: Int) {
-        viewHolder!!.tvContent.text =   commonItems.get(position).subject ;
+        viewHolder!!.tvContent.text = commonItems.get(position).subject;
         viewHolder!!.tvTime.text = commonItems.get(position).postdate;
         viewHolder!!.tvAutor.text = commonItems.get(position).author;
+        viewHolder.itemView.setOnClickListener {
+            DetailActivity.actionDetail(context, commonItems.get(position).tid);
+        }
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +41,8 @@ class HomeListRecyclerAdapter(val context: Context, val commonItems: LinkedList<
     /****
      * 清除之前适配器中的数据
      */
-    fun clearPreviousData()={commonItems.clear(); notifyDataSetChanged();}
+    fun clearPreviousData() = { commonItems.clear(); notifyDataSetChanged(); }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvContent: TextView = itemView.findViewById(R.id.tv_content) as TextView;
         var tvAutor: TextView = itemView.findViewById(R.id.tv_author) as TextView;
