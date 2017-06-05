@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * Created by root on 17-6-1.
  * http://m.blog.csdn.net/article/details?id=72726177
+ * https://segunfamisa.com/posts/using-retrofit-on-android-with-kotlin
  */
 class RetrofitUtils private constructor() : Interceptor {
     var mOkHttpClient: OkHttpClient? = null;
@@ -39,7 +40,6 @@ class RetrofitUtils private constructor() : Interceptor {
     //提供对外访问的静态方法
     companion object {
         fun getBaseUrl(): String {
-//            return "http://112.124.22.238:8081/course_api/banner/";
             return "http://www.12345.suzhou.gov.cn/bbs/phoneapi/";
         }
 
@@ -52,7 +52,7 @@ class RetrofitUtils private constructor() : Interceptor {
     fun initOkHttpClient() {
         if (null == mOkHttpClient) {
             mOkHttpClient = OkHttpClient.Builder()
-                    .addInterceptor(this)
+                    /* .addInterceptor(this)*/
                     .addNetworkInterceptor(this)
                     .build();
         }
@@ -60,12 +60,21 @@ class RetrofitUtils private constructor() : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain?): Response {
         var request = chain!!.request()
+        var size: Int = request.url().querySize();
+        for (i in (0..size - 1)) {
+            var key = request.url().queryParameterName(i);
+            var value = request.url().queryParameterValue(i);
+            println("key = $key value = $value");
+        }
+
         var response = chain.proceed(request)
-        val source = response.body().source()
-        source.request(java.lang.Long.MAX_VALUE)
-        val buffer = source.buffer()
-        var data = buffer.clone().readByteString().utf8()
-        println("data = " + data)
+
+//        val source = response.body().source()
+//        source.request(java.lang.Long.MAX_VALUE)
+//        val buffer = source.buffer()
+//        var data = String(buffer.clone().readByteArray());
+//        println("data = " + data)
+
         return response.newBuilder().header("Cache-Control", request.cacheControl().toString()).build()
     }
 }

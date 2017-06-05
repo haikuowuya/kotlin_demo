@@ -3,28 +3,29 @@ package com.qxb.kotlin
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.qxb.kotlin.fragment.HomeFragment
-import com.qxb.kotlin.fragment.ImageFragment
 import org.buffer.adaptablebottomnavigation.adapter.FragmentStateAdapter
 
 /**
  * Created by root on 17-5-31.
  */
-class ViewSwapperAdapter(val fm: FragmentManager) : FragmentStateAdapter(fm) {
+class ViewSwapperAdapter(fm: FragmentManager) : FragmentStateAdapter(fm) {
 
-    private val COUNT: Int = 4;
+    private val COUNT: Int = 3;
 
-    override fun getItem(position: Int): Fragment {
-        var resId = R.mipmap.ic_launcher;
+    override fun getItem(position: Int): Fragment? {
+
         when (position) {
             INDEX_HOME -> {
-                resId = R.drawable.ic_buffer;
-                return HomeFragment.newInstance();
-            }
-            INDEX_ATTENTION -> resId = R.drawable.ic_heart;
-            INDEX_FUNCTION -> resId = R.drawable.ic_retreat;
-            INDEX_ME -> resId = R.drawable.ic_four;
+                return HomeFragment.newInstance(TYPE_KMNY);
+            };
+            INDEX_ATTENTION -> {
+                return HomeFragment.newInstance(TYPE_XXFB)
+            };
+            INDEX_FUNCTION -> {
+                return HomeFragment.newInstance(TYPE_ZXTS)
+            };
         }
-        return ImageFragment.newInstance(resId)
+        return null;
     }
 
 
@@ -36,10 +37,15 @@ class ViewSwapperAdapter(val fm: FragmentManager) : FragmentStateAdapter(fm) {
         private val INDEX_HOME = 0;
         private val INDEX_ATTENTION = 1;
         private val INDEX_FUNCTION = 2;
-        private val INDEX_ME = 3;
-//        private val INDEX_BUFFER = 0
-//        private val INDEX_RETREAT = 1
-//        private val INDEX_VALUES = 2
-//        private val INDEX_FOUR = 3
+
+
+        /***
+         *
+         */
+        private val TYPE_KMNY = "1";
+        private val TYPE_ZXTS = "3";
+        private val TYPE_XXFB = "2";
+
     }
+
 }

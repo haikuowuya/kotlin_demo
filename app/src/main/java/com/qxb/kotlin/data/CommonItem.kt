@@ -65,4 +65,15 @@ data class CommonItem(val tid: String,
                       val ifupload: String,
                       val type: String,
                       val iconurl: String
+
+
 )
+{
+    override fun equals(other: Any?): Boolean {
+        if(other is CommonItem)
+        {
+            return  tid.equals(other.tid) ;
+        }
+        return super.equals(other)
+    }
+}

@@ -22,14 +22,20 @@ import java.util.*
  * Created by root on 17-6-1.
  */
 class HomeFragment : BaseFragment() {
+
     companion object {
-        fun newInstance(): HomeFragment {
+        private val  ARG_TYPE_ID="arg_type_id";
+        fun newInstance(typeId:String ): HomeFragment {
             val homeFragment: HomeFragment = HomeFragment();
+            var bundle:Bundle = Bundle();
+            bundle.putString(ARG_TYPE_ID, typeId);
+            homeFragment.arguments = bundle;
             return homeFragment;
 
         }
     }
 
+    lateinit  var mTypeId :String ;
     lateinit var mRecyclerView: RecyclerView;
     lateinit var mSwipeRefreshLayout: SwipeRefreshLayout;
     lateinit var mBtnNext: Button;
@@ -40,8 +46,7 @@ class HomeFragment : BaseFragment() {
         if (null == mRootView) {
             mRootView = inflater?.inflate(R.layout.fragment_home, null);
         }
-        var viewParent: ViewParent? = mRootView?.parent ;
-        println("viewParent = " + viewParent);
+        var viewParent: ViewParent? = mRootView?.parent;
         if (viewParent != null) {
             (viewParent as ViewGroup).removeView(mRootView);
         }
@@ -67,29 +72,23 @@ class HomeFragment : BaseFragment() {
     private fun doRefresh() {
         mCurrentPage = 1;
         doGetData()
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        mTypeId = arguments.getString(ARG_TYPE_ID);
         doGetData();
     }
-
     fun doGetData() {
         if (mCurrentPage < 1) {
             mCurrentPage = 1
         }
-        RetrofitUtils.getApiService()?.getHswz(mCurrentPage)!!
+        RetrofitUtils.getApiService()?.getHswz(mTypeId, mCurrentPage)!!
                 .subscribeOn(Schedulers.io())!!
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { println("doOnSubscribe") }
-                .subscribe({ result ->
-                    println("result = " + result)
-                    showRequestData(result.threads.common);
-
-                    result.locationtype.forEach {
-                        println("id = " + it.locationid + " name = " + it.locationname)
-                    }
+                .subscribe({ (threads) ->
+                    showRequestData(threads.common);
                 })
                 { throwable -> println("error = " + throwable.message) }
     }
@@ -101,9 +100,12 @@ class HomeFragment : BaseFragment() {
             mHomeListRecyclerAdapter = HomeListRecyclerAdapter(context, items);
             mRecyclerView.adapter = mHomeListRecyclerAdapter;
         } else {
+            if (mCurrentPage == 1) {
+                mHomeListRecyclerAdapter?.clearPreviousData();
+            }
             mHomeListRecyclerAdapter?.addItems(items);
         }
-
+        println("size = ${mHomeListRecyclerAdapter?.commonItems?.size}")
     }
 
 }

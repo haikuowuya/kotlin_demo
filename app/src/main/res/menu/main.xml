@@ -5,24 +5,19 @@
         android:id="@+id/action_one"
         android:enabled="true"
         android:icon="@drawable/ic_buffer"
-        android:title="one"
+        android:title="KMNY"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_two"
         android:enabled="true"
         android:icon="@drawable/ic_retreat"
-        android:title="two"
+        android:title="XXFB"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_three"
         android:enabled="true"
         android:icon="@drawable/ic_heart"
-        android:title="three"
+        android:title="ZXTS"
         app:showAsAction="always" />
 
-    <item android:id="@+id/action_four"
-          android:enabled="true"
-          android:icon="@drawable/ic_four"
-          android:title="four"
-          app:showAsAction="always"/>
 </menu>

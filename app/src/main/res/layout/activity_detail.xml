@@ -5,19 +5,8 @@
             xmlns:tools="http://schemas.android.com/tools"
                 android:background="@android:color/white">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tv_text"
-            android:padding="10dp"
-            android:textColor="#FF333333"
-            tools:text="kkkkkkkkkkkkkk\nddddddd"
-            android:lineSpacingExtra="4dp"
-            android:letterSpacing="0.2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </ScrollView>
+     <FrameLayout
+         android:id="@+id/frame_container"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>
 </RelativeLayout>

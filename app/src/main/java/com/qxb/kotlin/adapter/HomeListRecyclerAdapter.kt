@@ -25,7 +25,7 @@ class HomeListRecyclerAdapter(val context: Context, val commonItems: LinkedList<
         viewHolder!!.tvTime.text = commonItems.get(position).postdate;
         viewHolder!!.tvAutor.text = commonItems.get(position).author;
         viewHolder.itemView.setOnClickListener {
-            DetailActivity.actionDetail(context, commonItems.get(position).tid);
+            DetailActivity.actionDetail(context, commonItems[position].tid, commonItems[position].subject);
         }
     }
 
