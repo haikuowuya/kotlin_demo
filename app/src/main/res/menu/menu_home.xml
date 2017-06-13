@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_one"
+        android:enabled="true"
+        android:icon="@drawable/ic_buffer"
+        android:title="KMNY"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_two"
+        android:enabled="true"
+        android:icon="@drawable/ic_retreat"
+        android:title="XXFB"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_three"
+        android:enabled="true"
+        android:icon="@drawable/ic_heart"
+        android:title="ZXTS"
+        app:showAsAction="never"/>
+
+</menu>

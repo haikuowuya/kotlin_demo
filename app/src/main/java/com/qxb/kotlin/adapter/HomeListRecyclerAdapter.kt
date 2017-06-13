@@ -14,34 +14,35 @@ import java.util.*
 /**
  * Created by root on 17-6-1.
  */
-class HomeListRecyclerAdapter(val context: Context, val commonItems: LinkedList<CommonItem>) : RecyclerView.Adapter<HomeListRecyclerAdapter.ViewHolder>() {
+class HomeListRecyclerAdapter(val context: Context) : RecyclerView.Adapter<HomeListRecyclerAdapter.ViewHolder>() {
+    init {
+        setHasStableIds(true);
+    }
+    private var mItems:LinkedList<CommonItem> = LinkedList();
     override fun onCreateViewHolder(container: ViewGroup?, p1: Int): ViewHolder {
         var itemView = LayoutInflater.from(context).inflate(R.layout.list_home_item, container, false);
         return ViewHolder(itemView);
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder?, position: Int) {
-        viewHolder!!.tvContent.text = commonItems.get(position).subject;
-        viewHolder!!.tvTime.text = commonItems.get(position).postdate;
-        viewHolder!!.tvAutor.text = commonItems.get(position).author;
+        viewHolder!!.tvContent.text = mItems[position].subject;
+        viewHolder!!.tvTime.text = mItems[position].postdate;
+        viewHolder!!.tvAutor.text = mItems[position].author;
         viewHolder.itemView.setOnClickListener {
-            DetailActivity.actionDetail(context, commonItems[position].tid, commonItems[position].subject);
+            DetailActivity.actionDetail(context, mItems[position].tid, mItems[position].subject);
         }
     }
 
     override fun getItemCount(): Int {
-        return commonItems.size;
+        return mItems.size;
     }
 
     fun addItems(items: List<CommonItem>) {
-        commonItems.addAll(items);
+        mItems.addAll(items);
         notifyDataSetChanged();
     }
 
-    /****
-     * 清除之前适配器中的数据
-     */
-    fun clearPreviousData() = { commonItems.clear(); notifyDataSetChanged(); }
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvContent: TextView = itemView.findViewById(R.id.tv_content) as TextView;

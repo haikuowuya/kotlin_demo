@@ -3,14 +3,13 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#88E0DEDE"
+                android:background="#888888DE"
                 android:gravity="center">
 
     <RelativeLayout
         android:id="@+id/relative_author_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#AAE0DEDE"
         android:padding="10dp">
 
         <ImageView
@@ -44,7 +43,6 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="4dp"
             android:layout_toLeftOf="@+id/tv_time"
-
             android:layout_toRightOf="@id/iv_photo"
             android:gravity="center_vertical"
             android:textColor="#88AA00AA"
@@ -86,17 +84,10 @@
         android:textSize="14sp"
         tools:text="KKKKKKKKKKKkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"/>
 
-    <LinearLayout
-        android:id="@+id/linear_reply_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_content"
-        android:orientation="vertical"/>
-
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/linear_reply_container"
-        android:background="#FFFFFFFF"
-        tools:background="#FFFF0000"/>
+        android:layout_height="1dp"
+        android:layout_below="@+id/relative_author_container"
+        android:background="#66FF0000"/>
+
 </RelativeLayout>
